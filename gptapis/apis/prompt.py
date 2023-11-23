@@ -1,8 +1,9 @@
 from openai import OpenAI
 from django.http import JsonResponse
+from .creds import Creds
 
 class prompt():
-    GPT_API_KEY = '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'
+    GPT_API_KEY = Creds.get_key('GPT')
     def gptprompt(question_text):
         client = OpenAI(
             api_key=prompt.GPT_API_KEY,
