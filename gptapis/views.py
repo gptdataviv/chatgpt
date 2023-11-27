@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from django.db import connection
 from gptapis.models import RequestsData
-import tiktoken
 
 def index(request):
     return render(request, 'index.html')
