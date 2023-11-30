@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .get_client import ClientDetails
+from .client_functions import ClientDetails
 
 class prompt():
     def gptprompt(question_text):

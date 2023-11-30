@@ -1,5 +1,5 @@
 from openai import OpenAI
-from ..get_client import ClientDetails
+from ..client_functions import ClientDetails
 client = ClientDetails.initialize_client()
 
 # Sending our training data JSON files to GPT servers for fine tuning.
