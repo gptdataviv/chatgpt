@@ -3,16 +3,16 @@ from langchain.memory.chat_message_histories.in_memory import ChatMessageHistory
 from langchain.schema import messages_from_dict, messages_to_dict
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain, ConversationChain
-import json
+import json,time,os
 
-llm = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo-0301')
+llm = ChatOpenAI(api_key=os.environ["OPENAI_API_KEY"],temperature=0,model_name='gpt-3.5-turbo-0301')
 original_chain = ConversationChain(
     llm=llm,
     verbose=True,
     memory=ConversationBufferMemory()
 )
 
-original_chain.run('Start noting down thing i say.')
+original_chain.run('Can you note down the symptoms i speak?')
 
 extracted_messages = original_chain.memory.chat_memory.messages
 ingest_to_db = messages_to_dict(extracted_messages)
@@ -27,10 +27,11 @@ reloaded_chain = ConversationChain(
     verbose=True,
     memory=retrieved_memory
 )
-reloaded_chain.run('Vini plays for Real Madrid')
+reloaded_chain.run('The patient face is swollen')
 
-reloaded_chain.run('Vini wears jersey number 7')
+reloaded_chain.run('The patient feels pain is right molars')
 
-reloaded_chain.run('what did you note down on Vini')
+time.sleep(60)
+reloaded_chain.run('List down the symptoms which i asked you to note down and suggest remedies for them.')
 
 print(reloaded_chain.memory.chat_memory.messages)
