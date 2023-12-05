@@ -1,2 +1,5 @@
 *.pyc
+gptapis/apis/dental_model/data
+gptapis/apis/dental_model/faiss
+gptapis/apis/dental_model/models
 gptapis/apis/creds.py
